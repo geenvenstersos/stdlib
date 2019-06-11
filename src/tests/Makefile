@@ -1,4 +1,3 @@
-
 #Gets the include folder from the parent make
 #IDIR?=./include
 #LDIR?=./lib
@@ -11,15 +10,15 @@ BINDIR=./bin
 BUILDDIR=./build
 ODIR=$(BUILDDIR)/obj
 
-LIBS=
+LIBS=-ldl
 CC=gcc
 _C_FLAGS=-I$(IDIR) -std=c89 -Wall -Wextra -pedantic
 CFLAGS=-I$(IDIR)
 
-_DEPS = CuTest.h test_strlen.h
+_DEPS = utilities.h CuTest.h test_strlen.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = CuTest.o test_strlen.o tests.o
+_OBJ = utilities.o CuTest.o test_strlen.o tests.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 default: all

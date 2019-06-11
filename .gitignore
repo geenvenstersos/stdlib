@@ -19,6 +19,9 @@
 .deps
 .libs
 
+*.a
+*.so
+
 autom4te.cache
 config.cache
 config.h
@@ -55,6 +58,7 @@ REVISION
 /mpc*
 /gmp*
 /isl*
-/bin*
+**/bin*
+**/**/bin/*
 /obj*
 **/.vscode

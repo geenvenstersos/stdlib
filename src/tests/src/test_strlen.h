@@ -9,7 +9,7 @@
 
 #include "CuTest.h"
 
-CuSuite* test_suit_strlen();
+CuSuite* test_suit_strlen(void* sharedLib);
  
 
 #endif

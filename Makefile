@@ -12,8 +12,7 @@ LIBS=
 
 CC=gcc
 
-LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fpic
-CFLAGS=-I$(IDIR)
+LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC
 
 _DEPS = string.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
@@ -25,20 +24,21 @@ default: all
 
 
 $(ODIR)/%.o: $(LIBSRCDIR)/%.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(LIBCFLAGS)
 
 static: $(BINDIR)/static/subsetlibc
-dynamic: $(BINDIR)/dynamic/subsetlibc
+shared: $(BINDIR)/shared/subsetlibc
 
-all: static dynamic
+all: static shared
 
 $(BINDIR)/static/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
 	ar rcs $(BINDIR)/static/subsetlibc.a $(OBJ)
 
-$(BINDIR)/dynamic/subsetlibc: $(OBJ)
+$(BINDIR)/shared/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
-	ar rcs $(BINDIR)/dynamic/subsetlibc.a $(OBJ)
+	gcc -shared $(OBJ) -o $(BINDIR)/shared/subsetlibc.so
+
 
 
 .PHONY: all
