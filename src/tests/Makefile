@@ -15,22 +15,27 @@ CC=gcc
 _C_FLAGS=-I$(IDIR) -std=c89 -Wall -Wextra -pedantic
 CFLAGS=-I$(IDIR)
 
-_DEPS = utilities.h CuTest.h test_strlen.h test_memchr.h log.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+SHE = '\#'
 
-_OBJ = utilities.o CuTest.o test_strlen.o test_memchr.o tests.o log.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+DEPS = $(shell find src | grep '\.h$$' | grep -v $(SHE) | sed -e 's:^\./::')
+OBJ = $(shell find src | grep '\.c$$' | grep -v $(SHE) | sed -e 's:^src/:$(ODIR)/:' -e 's:\.c$$:\.o:')
+
 
 default: all
 all: clean test_cases
+
+variables:
+	echo $(OBJ)
+	#echo $(DEPS)
+
 test_cases: $(BINDIR)/test_cases
 	cd $(BINDIR)
 	$(BINDIR)/test_cases
 	
-	
 $(ODIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $$(dirname $@)
 	$(CC) -c -o $@ $< $(CFLAGS)
+
 
 $(BINDIR)/test_cases: $(OBJ)
 	@mkdir -p $$(dirname $@)
