@@ -11,9 +11,6 @@ BINDIR=./bin
 make all
 
 if [ $? -eq 0 ]; then
-
-    #clear 
-
     ${BINDIR}/test_cases
 
     echo $?

@@ -22,14 +22,12 @@ _OBJ = utilities.o CuTest.o test_strlen.o tests.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 default: all
-all: test_cases
+all: clean test_cases
 test_cases: $(BINDIR)/test_cases
-
-variables:
-	echo $(DEPS)
-	echo $(OBJ)
-	echo $(ODIR)
-
+	cd $(BINDIR)
+	$(BINDIR)/test_cases
+	
+	
 $(ODIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(@D)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -37,7 +35,7 @@ $(ODIR)/%.o: $(SRCDIR)/%.c
 $(BINDIR)/test_cases: $(OBJ)
 	mkdir -p $(@D)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
-
+	
 
 .PHONY: all
 

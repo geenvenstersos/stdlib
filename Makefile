@@ -29,7 +29,7 @@ $(ODIR)/%.o: $(LIBSRCDIR)/%.c $(DEPS)
 static: $(BINDIR)/static/subsetlibc
 shared: $(BINDIR)/shared/subsetlibc
 
-all: static shared
+all: static shared tests
 
 $(BINDIR)/static/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
@@ -39,6 +39,8 @@ $(BINDIR)/shared/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
 	gcc -shared $(OBJ) -o $(BINDIR)/shared/subsetlibc.so
 
+tests: static shared
+	$(MAKE) -C ./src/$@ all
 
 
 .PHONY: all
