@@ -15,10 +15,10 @@ CC=gcc
 _C_FLAGS=-I$(IDIR) -std=c89 -Wall -Wextra -pedantic
 CFLAGS=-I$(IDIR)
 
-_DEPS = utilities.h CuTest.h test_strlen.h
+_DEPS = utilities.h CuTest.h test_strlen.h test_memchr.h log.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = utilities.o CuTest.o test_strlen.o tests.o
+_OBJ = utilities.o CuTest.o test_strlen.o test_memchr.o tests.o log.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 default: all
@@ -40,4 +40,4 @@ $(BINDIR)/test_cases: $(OBJ)
 .PHONY: all
 
 clean:
-	rm -rf *~ core $(INCDIR)/*~ $(BINDIR)/* $(BUILDDIR)/* $(ODIR)/*.o
+	rm -rf *~ core $(INCDIR)/*~ $(BINDIR)/test_cases $(BUILDDIR)/* $(ODIR)/*.o

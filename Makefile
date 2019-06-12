@@ -17,7 +17,7 @@ LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC
 _DEPS = string.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = strlen.o 
+_OBJ = strlen.o memchr.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 default: all
@@ -34,10 +34,12 @@ all: static shared tests
 $(BINDIR)/static/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
 	ar rcs $(BINDIR)/static/subsetlibc.a $(OBJ)
+	cp $(BINDIR)/static/subsetlibc.a ./src/tests/bin/
 
 $(BINDIR)/shared/subsetlibc: $(OBJ)
 	mkdir -p $(@D)
 	gcc -shared $(OBJ) -o $(BINDIR)/shared/subsetlibc.so
+	cp $(BINDIR)/shared/subsetlibc.so ./src/tests/bin/
 
 tests: static shared
 	$(MAKE) -C ./src/$@ all

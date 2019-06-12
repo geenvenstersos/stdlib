@@ -15,5 +15,5 @@ size_t strlen(const char* str)
 {
   const char* s = str;
   while (*str++);
-  return (size_t)(s - 1 - str);
+  return (size_t)(str - s - 1);
 }

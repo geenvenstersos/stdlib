@@ -1,5 +1,6 @@
 #include "utilities.h"
 
+#include "log.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,13 +16,21 @@ void* getFunctionPointer(void* lib, const char* funcName) {
 	assert(lib != NULL);
 	assert(funcName != NULL);
 
-    printf("Looking for function pointer %s.\n\n", funcName);
+  log_info("Looking for function pointer '%s'.", funcName);
 
-    void* fptr = dlsym(lib, funcName);
+  void* fptr = dlsym(lib, funcName);
 
-    if (!fptr) {
-      printf("Could not get function pointer for %s\n  error is: %s\n\n", funcName, dlerror());
-      return NULL;
-    }
-    return fptr;
+  if (!fptr) {
+    log_error("Could not get function pointer for %s\n  error is: %s.", funcName, dlerror());
+    return NULL;
+  }
+  return fptr;
+}
+
+char* fill_strings(char* string, char filling, int size) {
+  while(size--) {
+    string[size] = filling;
+  }
+
+  return string;
 }
