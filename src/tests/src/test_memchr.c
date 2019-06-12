@@ -11,8 +11,8 @@
 
 
 void* (*fptr_memchr)(const void *str, int c, size_t n);
-
 void test_memchr(CuTest *tc, char* string, int len, int chartofind, int expected);
+void test_memchr_from_data(CuTest *tc, int size, int position, char tofind);
 
 void test_memchr_empty(CuTest *tc) {
    test_memchr(tc, "", 1, '+', 0);

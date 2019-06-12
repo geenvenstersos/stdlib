@@ -29,11 +29,11 @@ test_cases: $(BINDIR)/test_cases
 	
 	
 $(ODIR)/%.o: $(SRCDIR)/%.c
-	mkdir -p $(@D)
+	@mkdir -p $$(dirname $@)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 $(BINDIR)/test_cases: $(OBJ)
-	mkdir -p $(@D)
+	@mkdir -p $$(dirname $@)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 	
 
