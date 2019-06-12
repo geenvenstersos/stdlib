@@ -8,6 +8,7 @@
  * 
  * @param   str  The string.
  * @param   c    The char.
+ * @param   n    end of the String
  * @return       This function returns a pointer to the matching byte or 
  *               NULL if the character does not occur in the given memory area.
  * 
@@ -16,22 +17,9 @@
 void* memchr(const void *str, int c, size_t n)
 {
   char* charptr = str;
-  
-  int i = 0;
-  for(; i < n; i++) {
-      int value = charptr[i];
-      if(value == c) break;
+
+  while(n--) {
+    if(charptr[n] == c) return charptr + n;
   }
-  return (charptr + i);
-}
-
-
-/*
-
-  char* s = segment;
-  while (size--)
-    if (*s++ == c)
-      return s - 1;
   return NULL;
-
-*/
+}

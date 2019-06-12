@@ -14,16 +14,19 @@ CC=gcc
 
 LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC
 
-_DEPS = string.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+SHE = '\#'
 
-_OBJ = strlen.o memchr.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+HEADERS = $(shell find . -name tests -prune -o -print | grep '\.h$$' | grep -v $(SHE) | sed -e 's:^\./::')
+
+OBJECTS = $(shell find src -name tests -prune -o -print | grep '\.c$$' | grep -v $(SHE) | sed -e 's:^src/:obj/:' -e 's:\.c$$:\.o:')
+
 
 default: all
 
 
-$(ODIR)/%.o: $(LIBSRCDIR)/%.c $(DEPS)
+$(ODIR)/%.o: $(LIBSRCDIR)/%.c $(HEADERS)
+	@mkdir -p $$(dirname $@)
 	$(CC) -c -o $@ $< $(LIBCFLAGS)
 
 static: $(BINDIR)/static/subsetlibc
@@ -31,14 +34,19 @@ shared: $(BINDIR)/shared/subsetlibc
 
 all: static shared tests
 
-$(BINDIR)/static/subsetlibc: $(OBJ)
+variables:
+	echo $(OBJECTS)
+	echo $(HEADERS)
+
+
+$(BINDIR)/static/subsetlibc: $(OBJECTS)
 	mkdir -p $(@D)
-	ar rcs $(BINDIR)/static/subsetlibc.a $(OBJ)
+	ar rcs $(BINDIR)/static/subsetlibc.a $(OBJECTS)
 	cp $(BINDIR)/static/subsetlibc.a ./src/tests/bin/
 
-$(BINDIR)/shared/subsetlibc: $(OBJ)
+$(BINDIR)/shared/subsetlibc: $(OBJECTS)
 	mkdir -p $(@D)
-	gcc -shared $(OBJ) -o $(BINDIR)/shared/subsetlibc.so
+	gcc -shared $(OBJECTS) -o $(BINDIR)/shared/subsetlibc.so
 	cp $(BINDIR)/shared/subsetlibc.so ./src/tests/bin/
 
 tests: static shared
