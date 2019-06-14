@@ -1,9 +1,5 @@
 #Gets the include folder from the parent make
-#IDIR?=./include
-#LDIR?=./lib
 
-
-#IDIR+=./include
 IDIR=./src
 SRCDIR =./src
 BINDIR=./bin
@@ -25,17 +21,15 @@ default: all
 all: clean test_cases
 
 variables:
-	echo $(OBJ)
-	#echo $(DEPS)
+	echo $(LIBFILE)
 
 test_cases: $(BINDIR)/test_cases
 	cd $(BINDIR)
-	$(BINDIR)/test_cases
+	$(BINDIR)/test_cases $(LIBFILE)
 	
 $(ODIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $$(dirname $@)
 	$(CC) -c -o $@ $< $(CFLAGS)
-
 
 $(BINDIR)/test_cases: $(OBJ)
 	@mkdir -p $$(dirname $@)

@@ -2,17 +2,13 @@
 
 clear
 
-LIBINCDIR=../../include
-LIBDIR=../../include
 BINDIR=./bin
 
-#make clean
-#make all IDIR=${LIBINCDIR} LDIR=${LIBDIR}
-make all
+
+make LIBFILE=`pwd`/../../bin/shared/subsetlibc.so
 
 if [ $? -eq 0 ]; then
     ${BINDIR}/test_cases
-
     echo $?
 else
     echo FAIL

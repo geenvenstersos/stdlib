@@ -42,15 +42,13 @@ variables:
 $(BINDIR)/static/subsetlibc: $(OBJECTS)
 	mkdir -p $(@D)
 	ar rcs $(BINDIR)/static/subsetlibc.a $(OBJECTS)
-	cp $(BINDIR)/static/subsetlibc.a ./src/tests/bin/
 
 $(BINDIR)/shared/subsetlibc: $(OBJECTS)
 	mkdir -p $(@D)
 	gcc -shared $(OBJECTS) -o $(BINDIR)/shared/subsetlibc.so
-	cp $(BINDIR)/shared/subsetlibc.so ./src/tests/bin/
 
 tests: static shared
-	$(MAKE) -C ./src/$@ all
+	$(MAKE) -C ./src/$@ all LIBFILE=`pwd`/$(BINDIR)/shared/subsetlibc.so
 
 
 .PHONY: all

@@ -10,13 +10,16 @@
 
 void RunAllTests(void* sharedLib);
 
-int main(void) {
-   
-   char message[100];
-   const char* sharedLibName = "/home/rsouza/Projecten/OPERATING_SYSTEMS/SIDE_PROJECTS/subsetlibc/src/tests/bin/subsetlibc.so";
-   
-   void* sharedLib = loadLibrary(sharedLibName);
+int main(int argc, char** argv) {
 
+   if(argc != 2 && argv[1] == NULL) {
+      log_error("The location of the Library 'subsetlibc.so' should be provided as argument.");
+      return EXIT_FAILURE;
+   }
+
+   const char* sharedLibName = argv[1];
+
+   void* sharedLib = loadLibrary(sharedLibName);
 
    if(sharedLib == NULL) {
       log_error("Library 'subsetlibc.so' could not be loaded.");

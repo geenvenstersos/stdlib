@@ -1,40 +1,51 @@
-#ifndef _STRING_H
-#define _STRING_H
+#ifndef _MATH_H
+#define _MATH_H
 
 
-#include <bits/types.h>
-
-/**
- * `NULL`'s canonical header is <stddef.h>
- */
-#ifndef NULL
-# define NULL  ((void*)0)
-#endif
-
-
-/**
- * Returns the number of bytes in a NUL-terminated
- * string. This excludes the NUL byte.
- * 
- * @param   str  The string.
- * @return       The number of bytes before the first NUL byte.
- * 
- * @since  Always.
- */
-size_t strlen(const char*);
-
-
-/**
- * Searches for the first occurrence of the character c (an unsigned char) 
- * in the first n bytes of the string pointed to, by the argument str.
- * 
- * @param   str  The string.
- * @param   c    The char.
- * @return       This function returns a pointer to the matching byte or 
- *               NULL if the character does not occur in the given memory area.
- * 
- * @since  Always.
- */
-void *memchr(const void *str, int c, size_t n);
-
+double acos(double);
+double asin(double);
+double atan(double);
+double atan2(double, double);
+double ceil(double);
+double cos(double);
+double cosh(double);
+double exp(double);
+double fabs(double);
+double floor(double);
+double fmod(double, double);
+double frexp(double, int *);
+double ldexp(double, int);
+double log(double);
+double log10(double);
+double modf(double, double *);
+double pow(double, double);
+double sin(double);
+double sinh(double);
+double sqrt(double);
+double tan(double);
+double tanh(double);
+double erf(double);
+double erfc(double);
+double gamma(double);
+double hypot(double, double);
+double j0(double);
+double j1(double);
+double jn(int, double);
+double lgamma(double);
+double y0(double);
+double y1(double);
+double yn(int, double);
+int    isnan(double);
+double acosh(double);
+double asinh(double);
+double atanh(double);
+double cbrt(double);
+double expm1(double);
+int    ilogb(double);
+double log1p(double);
+double logb(double);
+double nextafter(double, double);
+double remainder(double, double);
+double rint(double);
+double scalb(double, double);
 #endif
