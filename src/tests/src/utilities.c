@@ -11,7 +11,7 @@ void* loadLibrary(const char* libName) {
 	return dlopen(libName,  RTLD_LAZY | RTLD_GLOBAL);
 }
 
-void* getFunctionPointer(void* lib, const char* funcName) {
+void* loadfunctionptr(void* lib, const char* funcName) {
 
 	assert(lib != NULL);
 	assert(funcName != NULL);

@@ -7,6 +7,7 @@
 
 #include "test_strlen.h"
 #include "test_memchr.h"
+#include "test_math.h"
 
 void RunAllTests(void* sharedLib);
 
@@ -41,6 +42,7 @@ void RunAllTests(void* sharedLib) {
    
    CuSuiteAddSuite(suite, test_suit_strlen(sharedLib));
    CuSuiteAddSuite(suite, test_suit_memchr(sharedLib));
+   CuSuiteAddSuite(suite, test_suit_math(sharedLib));
    
 
    CuSuiteRun(suite);

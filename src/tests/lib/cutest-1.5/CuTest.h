@@ -38,7 +38,7 @@ void CuStringDelete(CuString* str);
 
 typedef struct CuTest CuTest;
 
-typedef void (*TestFunction)(CuTest *);
+typedef void (*TestFunction)(CuTest *, void*);
 
 struct CuTest
 {
@@ -48,10 +48,11 @@ struct CuTest
 	int ran;
 	const char* message;
 	jmp_buf *jumpBuf;
+	void* param;
 };
 
-void CuTestInit(CuTest* t, const char* name, TestFunction function);
-CuTest* CuTestNew(const char* name, TestFunction function);
+void CuTestInit(CuTest* t, const char* name, TestFunction function, void* param);
+CuTest* CuTestNew(const char* name, TestFunction function, void* param);
 void CuTestRun(CuTest* tc);
 void CuTestDelete(CuTest *t);
 
@@ -93,7 +94,8 @@ void CuAssertPtrEquals_LineMsg(CuTest* tc,
 
 #define MAX_TEST_CASES	1024
 
-#define SUITE_ADD_TEST(SUITE,TEST)	CuSuiteAdd(SUITE, CuTestNew(#TEST, TEST))
+#define SUITE_ADD_TEST(SUITE,TEST)	CuSuiteAdd(SUITE, CuTestNew(#TEST, TEST, NULL))
+#define SUITE_ADD_TEST_PARAM(SUITE,TEST,PARAM)	CuSuiteAdd(SUITE, CuTestNew(#TEST, TEST, PARAM))
 
 typedef struct
 {

@@ -10,7 +10,12 @@ double ceil(double);
 double cos(double);
 double cosh(double);
 double exp(double);
-double fabs(double);
+
+int abs(int n);
+long labs(long n);
+float fabs(float f);
+
+
 double floor(double);
 double fmod(double, double);
 double frexp(double, int *);

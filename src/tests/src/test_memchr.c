@@ -18,19 +18,19 @@ void test_memchr_empty(CuTest *tc) {
    test_memchr(tc, "", 1, '+', 0);
 }
 
-void test_memchr_small(CuTest *tc) {
+void test_memchr_small(CuTest *tc, void* param) {
    test_memchr_from_data(tc, 10, 5, '+');
 }
 
-void test_memchr_medium(CuTest *tc) {
+void test_memchr_medium(CuTest *tc, void* param) {
    test_memchr_from_data(tc, 100000, 50000, '+');
 }
 
-void test_memchr_big(CuTest *tc) {
+void test_memchr_big(CuTest *tc, void* param) {
    test_memchr_from_data(tc, 1000000, 500000, '+');
 }
 
-void test_memchr_huge(CuTest *tc) {
+void test_memchr_huge(CuTest *tc, void* param) {
    test_memchr_from_data(tc, 10000000, 500000, '+');
 }
 
@@ -54,7 +54,7 @@ CuSuite* test_suit_memchr(void* sharedLib) {
 
    CuSuite* suite = CuSuiteNew();
 
-   fptr_memchr = (MEMCHR_API)getFunctionPointer(sharedLib, MEMCHR);
+   fptr_memchr = (MEMCHR_API)loadfunctionptr(sharedLib, MEMCHR);
 
    if(fptr_memchr == NULL) {
       log_info("Could not get function pointer for '%s'.", MEMCHR);
@@ -62,7 +62,6 @@ CuSuite* test_suit_memchr(void* sharedLib) {
 
       log_info("Function pointer for '%s' loaded succesfully.", MEMCHR);
 
-      //SUITE_ADD_TEST(suite, test_memchr_empty);
       SUITE_ADD_TEST(suite, test_memchr_small);
       SUITE_ADD_TEST(suite, test_memchr_medium);
       SUITE_ADD_TEST(suite, test_memchr_big);

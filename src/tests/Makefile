@@ -25,20 +25,20 @@ variables:
 
 test_cases: $(BINDIR)/test_cases
 	@echo Running test cases...
-	cd $(BINDIR)
-	$(BINDIR)/test_cases $(LIBFILE)
+	@cd $(BINDIR)
+	@$(BINDIR)/test_cases $(LIBFILE)
 	
 $(ODIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $$(dirname $@)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	@$(CC) -c -o $@ $< $(CFLAGS)
 
 $(BINDIR)/test_cases: $(OBJ)
 	@mkdir -p $$(dirname $@)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+	@$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 	
 
 .PHONY: all
 
 clean:
 	@echo Cleaning tests files...
-	rm -rf *~ core $(INCDIR)/*~ $(BINDIR)/test_cases $(BUILDDIR)/* $(ODIR)/*.o
+	@rm -rf *~ core $(INCDIR)/*~ $(BINDIR)/test_cases $(BUILDDIR)/* $(ODIR)/*.o

@@ -12,23 +12,23 @@ void test_strlen(CuTest *tc, const char* string, const int expected_size);
 void test_strlen_arbitrary(CuTest *tc, const char chr, int size);
 size_t (*fptr_strlen)(const char*);
 
-void test_strlen_empty(CuTest *tc) {
+void test_strlen_empty(CuTest *tc, void* param) {
    test_strlen(tc, "", 0);
 }
 
-void test_strlen_small(CuTest *tc) {
+void test_strlen_small(CuTest *tc, void* param) {
    test_strlen_arbitrary(tc, 'X', 10);
 }
 
-void test_strlen_medium(CuTest *tc) {
+void test_strlen_medium(CuTest *tc, void* param) {
    test_strlen_arbitrary(tc, 'X', 100);
 }
 
-void test_strlen_big(CuTest *tc) {
+void test_strlen_big(CuTest *tc, void* param) {
    test_strlen_arbitrary(tc, 'X', 1000);
 }
 
-void test_strlen_huge(CuTest *tc) {
+void test_strlen_huge(CuTest *tc, void* param) {
    test_strlen_arbitrary(tc, 'X', 10000000);
 }
 
@@ -57,7 +57,7 @@ CuSuite* test_suit_strlen(void* sharedLib) {
 
    CuSuite* suite = CuSuiteNew();
 
-   fptr_strlen = (STRLEN_API)getFunctionPointer(sharedLib, STRLEN);
+   fptr_strlen = (STRLEN_API)loadfunctionptr(sharedLib, STRLEN);
 
    if(fptr_strlen == NULL) {
       log_info("Could not get function pointer for '%s'.", STRLEN);

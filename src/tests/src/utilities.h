@@ -3,7 +3,7 @@
 
     void* loadLibrary(const char* libName);
 
-    void* getFunctionPointer(void* lib, const char* funcName);
+    void* loadfunctionptr(void* lib, const char* funcName);
 
     char* fill_strings(char* string, char filling, int size);
 
