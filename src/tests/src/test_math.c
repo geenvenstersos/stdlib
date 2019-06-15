@@ -5,8 +5,6 @@
 #include "utilities.h"
 #include "log.h"
 
-void* _sharedLib = NULL;
-
 void test_abs(CuTest *tc, void* param) {
    int (*fptr)(int) = (int (*) (int))param;
 
@@ -76,11 +74,9 @@ void test_sin(CuTest *tc, void* param) {
    }
 }
 
-
-
 CuSuite* test_suit_math(void* sharedLib) {
 
-   _sharedLib = sharedLib;
+   void* _sharedLib = sharedLib;
 
    CuSuite* suite = CuSuiteNew();
 
