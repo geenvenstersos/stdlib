@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void tanh(void) {
-
+double tanh(double n) {
+    return 0.0;
 }

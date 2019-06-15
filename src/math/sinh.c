@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void sinh(void) {
-
+double sinh(double n) {
+    return 0.0;
 }

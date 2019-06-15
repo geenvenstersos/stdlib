@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void cos(void) {
-
+double cos(double n) {
+    return 0.0;
 }

@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void lgamma(void) {
-
+double lgamma(double d) {
+    return 0.0;
 }

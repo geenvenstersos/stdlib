@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void sqrt(void) {
-
+double sqrt(double n) {
+    return 0.0;
 }

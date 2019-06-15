@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void erfc(void) {
-
+double erfc(double n) {
+    return 0.0;
 }

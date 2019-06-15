@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void fabs(void) {
-
+double fabs(double n) {
+    return 0.0;
 }

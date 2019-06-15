@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void scalb(void) {
-
+double scalb(double a, double b) {
+    return 0.0;
 }

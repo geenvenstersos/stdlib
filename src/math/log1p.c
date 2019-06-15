@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void log1p(void) {
-
+double log1p(double n) {
+    return 0.0;
 }

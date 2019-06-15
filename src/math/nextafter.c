@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void nextafter(void) {
-
+double nextafter(double a, double b) {
+    return 0.0;
 }

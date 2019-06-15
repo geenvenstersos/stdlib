@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void exp(void) {
-
+double exp(double n) {
+    return 0.0;
 }

@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void cbrt(void) {
-
+double cbrt(double n) {
+    return 0.0;
 }

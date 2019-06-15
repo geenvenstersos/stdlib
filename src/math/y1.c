@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void y1(void) {
-
+double y1(double n) {
+    return 0.0;
 }

@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void ceil(void) {
-
+double ceil(double n) {
+    return 0.0;
 }

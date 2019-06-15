@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void fmod(void) {
-
+double fmod(double a, double b) {
+    return 0.0;
 }

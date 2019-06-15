@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void gamma(void) {
-
+double gamma(double n) {
+    return 0.0;
 }

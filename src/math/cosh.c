@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void cosh(void) {
-
+double cosh(double n) {
+    return 0.0;
 }

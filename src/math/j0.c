@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void j0(void) {
-
+double j0(double n) {
+    return 0.0;
 }

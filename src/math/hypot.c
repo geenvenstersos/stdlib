@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void hypot(void) {
-
+double hypot(double a, double b) {
+    return 0.0;
 }

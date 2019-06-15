@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void atan2(void) {
-
+double atan2(double a, double b) {
+    return 0.0;
 }

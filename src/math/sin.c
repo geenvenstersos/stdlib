@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void sin(void) {
-
+double sin(double n) {
+    return 0.0;
 }

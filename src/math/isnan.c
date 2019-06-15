@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void isnan(void) {
-
+int isnan(double n) {
+    return 0.0;
 }

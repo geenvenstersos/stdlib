@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void ldexp(void) {
-
+double ldexp(double n, int i) {
+    return 0.0;
 }

@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void atanh(void) {
-
+double atanh(double n) {
+    return 0.0;
 }

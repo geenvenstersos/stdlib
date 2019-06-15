@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void floor(void) {
-
+double floor(double n) {
+    return 0.0;
 }

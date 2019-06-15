@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void asinh(void) {
-
+double asinh(double n) {
+    return 0.0;
 }

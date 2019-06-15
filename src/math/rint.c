@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void rint(void) {
-
+double rint(double n) {
+    return 0.0;
 }

@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void modf(void) {
-
+double modf(double n, double *p) {
+    return 0.0;
 }

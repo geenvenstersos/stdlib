@@ -24,6 +24,7 @@ variables:
 	echo $(LIBFILE)
 
 test_cases: $(BINDIR)/test_cases
+	@echo Running test cases...
 	cd $(BINDIR)
 	$(BINDIR)/test_cases $(LIBFILE)
 	
@@ -39,4 +40,5 @@ $(BINDIR)/test_cases: $(OBJ)
 .PHONY: all
 
 clean:
+	@echo Cleaning tests files...
 	rm -rf *~ core $(INCDIR)/*~ $(BINDIR)/test_cases $(BUILDDIR)/* $(ODIR)/*.o

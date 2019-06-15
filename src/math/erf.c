@@ -1,6 +1,6 @@
 #include "math.h"
 
 
-void erf(void) {
-
+double erf(double n) {
+    return 0.0;
 }
