@@ -61,6 +61,21 @@ void test_fabs(CuTest *tc, void* param) {
    }
 }
 
+void test_sin(CuTest *tc, void* param) {
+   float (*fptr)(float) = (float (*) (float))param;
+
+   if(fptr == NULL) {
+      log_error("Could not get function pointer for 'sin'.");
+   } else {
+      log_info("Function pointer for 'sin' loaded successfully.");
+
+      CuAssertDblEquals(tc,  0, fptr(0),        1e-5);
+      CuAssertDblEquals(tc,  1, fptr(M_PI/2.0), 1e-5);
+      CuAssertDblEquals(tc,  0, fptr(M_PI),     1e-5);
+      CuAssertDblEquals(tc, -1, fptr(3*M_PI/2), 1e-5);
+   }
+}
+
 
 
 CuSuite* test_suit_math(void* sharedLib) {
@@ -69,9 +84,11 @@ CuSuite* test_suit_math(void* sharedLib) {
 
    CuSuite* suite = CuSuiteNew();
 
-   SUITE_ADD_TEST_PARAM(suite, test_abs, loadfunctionptr(sharedLib, "abs"));
-   SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
-   SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
+   //SUITE_ADD_TEST_PARAM(suite, test_abs, loadfunctionptr(sharedLib, "abs"));
+   //SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
+   //SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
+
+   SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
 
    return suite;
 }

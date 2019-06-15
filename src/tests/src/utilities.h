@@ -1,7 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-    void* loadLibrary(const char* libName);
+    void* loadlibrary(const char* libName);
 
     void* loadfunctionptr(void* lib, const char* funcName);
 

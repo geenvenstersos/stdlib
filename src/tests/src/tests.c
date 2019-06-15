@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
    const char* sharedLibName = argv[1];
 
-   void* sharedLib = loadLibrary(sharedLibName);
+   void* sharedLib = loadlibrary(sharedLibName);
 
    if(sharedLib == NULL) {
       log_error("Library 'subsetlibc.so' could not be loaded.");

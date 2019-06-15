@@ -7,7 +7,7 @@
 #include <dlfcn.h>
 
 
-void* loadLibrary(const char* libName) {
+void* loadlibrary(const char* libName) {
 	return dlopen(libName,  RTLD_LAZY | RTLD_GLOBAL);
 }
 
