@@ -60,7 +60,7 @@ void test_fabs(CuTest *tc, void* param) {
 }
 
 void test_sin(CuTest *tc, void* param) {
-   float (*fptr)(float) = (float (*) (float))param;
+   double (*fptr)(double) = (double (*) (double))param;
 
    if(fptr == NULL) {
       log_error("Could not get function pointer for 'sin'.");
