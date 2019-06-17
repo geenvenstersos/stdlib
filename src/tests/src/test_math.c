@@ -59,6 +59,26 @@ void test_fabs(CuTest *tc, void* param) {
    }
 }
 
+void test_auxiliary_trig_power(CuTest *tc, void* param) {
+
+   unsigned long long int (*fptr)(int, int, int, int) = 
+      (unsigned long long int (*)(int, int, int, int))param;
+
+   int base = 2;
+
+   int base_2_2 = fptr(base, 2, 1, 1);
+   printf("base_2_2 = %d\n", base_2_2);
+   CuAssertIntEquals(tc,  2, base_2_2);
+
+   int base_2_4 = fptr(base, 4, base_2_2, 2);
+   printf("base_2_4 = %d\n", base_2_4);
+   CuAssertIntEquals(tc,  16, base_2_4);
+}
+
+void test_auxiliary_trig_factorial(CuTest *tc, void* param) {
+
+}
+
 void test_sin(CuTest *tc, void* param) {
    double (*fptr)(double) = (double (*) (double))param;
 
@@ -84,7 +104,10 @@ CuSuite* test_suit_math(void* sharedLib) {
    //SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
    //SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
 
-   SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
+   //SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
+   
+   SUITE_ADD_TEST_PARAM(suite, test_auxiliary_trig_power, loadfunctionptr(sharedLib, "_power"));
+   SUITE_ADD_TEST_PARAM(suite, test_auxiliary_trig_factorial, loadfunctionptr(sharedLib, "_factorial"));
 
    return suite;
 }

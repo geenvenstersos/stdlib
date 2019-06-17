@@ -1,6 +1,6 @@
 #include "math.h"
 
-int _power(int base, int exponent, int start, int startexponent) {
+unsigned long long int _power(int base, int exponent, int start, int startexponent) {
     
     if(exponent == 0) return 1;
     else if(exponent == 1) return base;
@@ -30,7 +30,7 @@ unsigned long long int _factorial(int n, int start, int factorialstart) {
 }
 	
 double sin(double x) {
-	int ordermax = 10;
+	int ordermax = 4;
 
 	unsigned long long int fact = 1;
 
@@ -49,4 +49,28 @@ double sin(double x) {
 	}
 
 	return sin;
+}
+
+double cos(double n) {
+    return 0.0;
+}
+
+double tan(double n) {
+    return 0.0;
+}
+
+double asin(double n) {
+    return 0.0;
+}
+
+double acos(double n) {
+    return 0.0;
+}
+
+double atan(double n) {
+    return 0.0;
+}
+
+double atan2(double a, double b) {
+    return 0.0;
 }
