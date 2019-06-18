@@ -61,18 +61,44 @@ void test_fabs(CuTest *tc, void* param) {
 
 void test_auxiliary_trig_power(CuTest *tc, void* param) {
 
-   unsigned long long int (*fptr)(int, int, int, int) = 
-      (unsigned long long int (*)(int, int, int, int))param;
+   unsigned long long int (*fptr)(int, int, unsigned long long int, int) = 
+      (unsigned long long int (*)(int, int, unsigned long long int, int))param;
 
-   int base = 2;
+   /* BASE = 2 */
+   unsigned long long int base2 = 2;
 
-   int base_2_2 = fptr(base, 2, 1, 1);
-   printf("base_2_2 = %d\n", base_2_2);
-   CuAssertIntEquals(tc,  2, base_2_2);
+   unsigned long long int base_2_2 = fptr(base2, 2, base2, 1);
+   CuAssertIntEquals(tc,  4, base_2_2);
 
-   int base_2_4 = fptr(base, 4, base_2_2, 2);
-   printf("base_2_4 = %d\n", base_2_4);
+   unsigned long long int base_2_4 = fptr(base2, 4, base_2_2, 2);
    CuAssertIntEquals(tc,  16, base_2_4);
+
+   unsigned long long int base_2_10 = fptr(base2, 10, base_2_4, 4);
+   CuAssertIntEquals(tc,  1024, base_2_10);
+
+   /* BASE = 3 */
+   unsigned long long int base3 = 3;
+   unsigned long long int base_3_2 = fptr(base3, 2, base3, 1);
+   CuAssertIntEquals(tc,  9, base_3_2);
+
+   unsigned long long int base_3_4 = fptr(base3, 4, base_3_2, 2);
+   CuAssertIntEquals(tc,  81, base_3_4);
+
+   unsigned long long int base_3_10 = fptr(base3, 10, base_3_4, 4);
+   CuAssertIntEquals(tc,  59049, base_3_10);
+
+   /* BASE = 17 */
+   unsigned long long int base17 = 17;
+   unsigned long long int base_17_2 = fptr(base17, 2, base17, 1);
+   CuAssertIntEquals(tc,  289, base_17_2);
+
+   unsigned long long int base_17_4 = fptr(base17, 4, base_17_2, 2);
+   CuAssertIntEquals(tc,  83521, base_17_4);
+
+   unsigned long long int base_17_6 = fptr(base17, 6, base_17_4, 4);
+   CuAssertIntEquals(tc,  24137569, base_17_6);
+
+
 }
 
 void test_auxiliary_trig_factorial(CuTest *tc, void* param) {
@@ -100,9 +126,9 @@ CuSuite* test_suit_math(void* sharedLib) {
 
    CuSuite* suite = CuSuiteNew();
 
-   //SUITE_ADD_TEST_PARAM(suite, test_abs, loadfunctionptr(sharedLib, "abs"));
-   //SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
-   //SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
+   SUITE_ADD_TEST_PARAM(suite, test_abs, loadfunctionptr(sharedLib, "abs"));
+   SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
+   SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
 
    //SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
    

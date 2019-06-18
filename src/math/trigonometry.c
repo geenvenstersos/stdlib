@@ -1,17 +1,17 @@
 #include "math.h"
 
-unsigned long long int _power(int base, int exponent, int start, int startexponent) {
+unsigned long long int _power(int base, int exponent, unsigned long long int start, int startexponent) {
     
     if(exponent == 0) return 1;
     else if(exponent == 1) return base;
     
     int remaingexp = exponent-startexponent;
-    
+
     if(remaingexp == 0) return base;
     
-    int pwr = start;
+    unsigned long long int pwr = start;
     
-    for(int n=0; n < remaingexp; n++) {
+    for(int n = 0; n < remaingexp; n++) {
         pwr *= base;
     }
   
