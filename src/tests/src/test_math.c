@@ -103,6 +103,19 @@ void test_auxiliary_trig_power(CuTest *tc, void* param) {
 
 void test_auxiliary_trig_factorial(CuTest *tc, void* param) {
 
+   unsigned long long int (*fptr)(int, unsigned long long int, int) = 
+      (unsigned long long int (*)(int, unsigned long long int, int ))param;
+
+   unsigned long long int fact = fptr(4, 1, 1);
+   CuAssertIntEquals(tc,  24, fact);
+
+   fact = fptr(5, fact, 4);
+   CuAssertIntEquals(tc,  120, fact);
+
+
+   fact = fptr(11, fact, 5);
+   CuAssertIntEquals(tc,  39916800, fact);
+
 }
 
 void test_sin(CuTest *tc, void* param) {

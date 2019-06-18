@@ -18,15 +18,18 @@ unsigned long long int _power(int base, int exponent, unsigned long long int sta
   return pwr;
 }
 
-unsigned long long int _factorial(int n, int start, int factorialstart) {
-	if(start > n) return 0;
-	else if(start == n) return 1;
+unsigned long long int _factorial(const int n, unsigned long long int start, int factorialstart) {
 
-	unsigned long long int ret = factorialstart;
-	for(int i = start + 1; i <= n; i++) {
-		ret *= i;
-	}
-	return ret;
+	if(n == 0 || n == 1) return 1;
+	else if(n == factorialstart) return factorialstart;
+	else if(n < factorialstart) return 0;
+
+	start = start == 0 ? 1 : start;
+	factorialstart = factorialstart == 0 ? 1 : factorialstart;
+
+	for(int i = factorialstart + 1; i <= n; i++)  start *= i;
+
+	return start;
 }
 	
 double sin(double x) {
