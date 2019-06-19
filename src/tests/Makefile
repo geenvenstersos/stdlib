@@ -8,8 +8,8 @@ ODIR=$(BUILDDIR)/obj
 
 LIBS=-ldl
 CC=gcc
-_C_FLAGS=-I$(IDIR) -std=c89 -Wall -Wextra -pedantic
-CFLAGS=-I$(IDIR)
+_C_FLAGS=-I$(IDIR) -std=c89 -Wall -Wextra -pedantic -D__DEBUG__
+CFLAGS=-I$(IDIR) -D__DEBUG__
 
 SHE = '\#'
 

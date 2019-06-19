@@ -64,6 +64,11 @@ void test_auxiliary_trig_power(CuTest *tc, void* param) {
    unsigned long long int (*fptr)(int, int, unsigned long long int, int) = 
       (unsigned long long int (*)(int, int, unsigned long long int, int))param;
 
+#ifdef __DEBUG__
+   /* TEST FOR ERROR - FLAG __DEBUG__*/
+   CuAssertIntEquals(tc, 0, fptr(2, 2, 1, 1));
+#endif
+
    /* BASE = 2 */
    unsigned long long int base2 = 2;
 
@@ -126,10 +131,25 @@ void test_sin(CuTest *tc, void* param) {
    } else {
       log_info("Function pointer for 'sin' loaded successfully.");
 
-      CuAssertDblEquals(tc,  0, fptr(0),        1e-5);
-      CuAssertDblEquals(tc,  1, fptr(M_PI/2.0), 1e-5);
-      CuAssertDblEquals(tc,  0, fptr(M_PI),     1e-5);
-      CuAssertDblEquals(tc, -1, fptr(3*M_PI/2), 1e-5);
+      CuAssertDblEquals(tc,  0,        fptr(0),       1e-5);
+      CuAssertDblEquals(tc,  1,        fptr(M_PI/2.0),1e-5);
+      CuAssertDblEquals(tc,  0,        fptr(M_PI),    1e-5);
+      CuAssertDblEquals(tc, -1,        fptr(3*M_PI/2),1e-5);
+   }
+}
+
+void test_cos(CuTest *tc, void* param) {
+   double (*fptr)(double) = (double (*) (double))param;
+
+   if(fptr == NULL) {
+      log_error("Could not get function pointer for 'cos'.");
+   } else {
+      log_info("Function pointer for 'cos' loaded successfully.");
+
+      CuAssertDblEquals(tc,  1,        fptr(0),       1e-5);
+      CuAssertDblEquals(tc,  0,        fptr(M_PI/2.0),1e-5);
+      CuAssertDblEquals(tc,  -1,        fptr(M_PI),    1e-5);
+      CuAssertDblEquals(tc, 0,        fptr(3*M_PI/2),1e-5);
    }
 }
 
@@ -143,10 +163,11 @@ CuSuite* test_suit_math(void* sharedLib) {
    SUITE_ADD_TEST_PARAM(suite, test_labs, loadfunctionptr(sharedLib, "labs"));
    SUITE_ADD_TEST_PARAM(suite, test_fabs, loadfunctionptr(sharedLib, "fabs"));
 
-   //SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
-   
    SUITE_ADD_TEST_PARAM(suite, test_auxiliary_trig_power, loadfunctionptr(sharedLib, "_power"));
    SUITE_ADD_TEST_PARAM(suite, test_auxiliary_trig_factorial, loadfunctionptr(sharedLib, "_factorial"));
 
+   SUITE_ADD_TEST_PARAM(suite, test_sin, loadfunctionptr(sharedLib, "sin"));
+   SUITE_ADD_TEST_PARAM(suite, test_cos, loadfunctionptr(sharedLib, "cos"));
+   
    return suite;
 }
