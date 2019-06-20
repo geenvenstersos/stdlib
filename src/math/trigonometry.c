@@ -1,30 +1,25 @@
 #include "math.h"
 #include "debug.h"
 
+#define TAYLOR_MAX_ORDER 11
 
-#define TAYLOR_MAX_ORDER 5
 
+double _power(double base, int exponent, double start, int startexponent) {
 
-unsigned long long int _power(int base, int exponent, unsigned long long int start, int startexponent) {
+	if(exponent == 0) return 1;
+	else if(exponent == 1) return base;
 
-#ifndef NDEBUG 
-	//if(start%base != 0 || start < base) return 0;
-#endif
-	
-    if(exponent == 0) return 1;
-    else if(exponent == 1) return base;
-    
-    int remaingexp = exponent - startexponent;
+	int remaingexp = exponent - startexponent;
 
-    if(remaingexp == 0) return base;
-    
-    unsigned long long int pwr = start;
-    
-    for(int n = 0; n < remaingexp; n++) {
-        pwr *= base;
-    }
-  
-  return pwr;
+	if(remaingexp == 0) return base;
+
+	double pwr = start;
+
+	for(int n = 0; n < remaingexp; n++) {
+		pwr *= base;
+	}
+
+	return pwr;
 }
 
 unsigned long long int _factorial(const int n, unsigned long long int start, int factorialstart) {
@@ -61,9 +56,9 @@ double atan2(double a, double b) {
     return 0.0;
 }
 
-double sin(double x) {
+double sin(const double x) {
 
-	int ordermax = TAYLOR_MAX_ORDER;
+	const int ordermax = TAYLOR_MAX_ORDER;
 
 	unsigned long long int fact = 1;
 
@@ -74,7 +69,6 @@ double sin(double x) {
 	for(int n = 0; n < ordermax; n++) {
 		
 		int term = (2 * n + 1);
-		TRACE("Sin ");
 
 		poweracc = _power(x, term, x, 1);
 
@@ -88,15 +82,15 @@ double sin(double x) {
 	return sin;
 }
 
-double cos(double x) {
+double cos(const double x) {
 
-	int ordermax = TAYLOR_MAX_ORDER;
+	const int ordermax = TAYLOR_MAX_ORDER;
 
 	unsigned long long int fact = 1;
 
 	double poweracc = x;
 
-	double cos = 0.0;
+	double sin = 0.0;
 
 	for(int n = 0; n < ordermax; n++) {
 		
@@ -104,10 +98,13 @@ double cos(double x) {
 
 		poweracc = _power(x, term, x, 1);
 
+		if(poweracc <= 0.0) return 0.0;
+
 		fact = _factorial(term, 1, 1);
 
-		cos += (n%2==0?1.0:-1.0) * poweracc/fact;
+		sin += (n%2==0?1.0:-1.0) * poweracc/fact;
 	}
 
-	return cos;
+	return sin;
 }
+
