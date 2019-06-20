@@ -12,7 +12,7 @@ LIBS=
 
 CC=gcc
 
-LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC  -D__DEBUG__
+LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC
 
 SHE = '\#'
 

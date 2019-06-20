@@ -1,28 +1,13 @@
 #include "math.h"
+#include "debug.h"
 
 
 #define TAYLOR_MAX_ORDER 5
 
 
-#ifdef __DEBUG__
-void (*print_debug)(const char*);
-
-void set_print_debug(void (*fptr)(const char*)) {
-	print_debug = fptr;
-}
-
-#define TRACE(message) print_debug(message)
-
-#else
-
-#define TRACE(message) 
-
-#endif
-
-
 unsigned long long int _power(int base, int exponent, unsigned long long int start, int startexponent) {
 
-#ifdef __DEBUG__
+#ifndef NDEBUG 
 	//if(start%base != 0 || start < base) return 0;
 #endif
 	
@@ -78,8 +63,6 @@ double atan2(double a, double b) {
 
 double sin(double x) {
 
-	TRACE(">>>>>>>>>>>>>>>>>>>>> CALLING SIN(X) <<<<<<<<<<<<<<<<<<<<\n");
-
 	int ordermax = TAYLOR_MAX_ORDER;
 
 	unsigned long long int fact = 1;
@@ -91,6 +74,7 @@ double sin(double x) {
 	for(int n = 0; n < ordermax; n++) {
 		
 		int term = (2 * n + 1);
+		TRACE("Sin ");
 
 		poweracc = _power(x, term, x, 1);
 

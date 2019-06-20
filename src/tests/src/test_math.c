@@ -64,8 +64,8 @@ void test_auxiliary_trig_power(CuTest *tc, void* param) {
    unsigned long long int (*fptr)(int, int, unsigned long long int, int) = 
       (unsigned long long int (*)(int, int, unsigned long long int, int))param;
 
-#ifdef __DEBUG__
-   /* TEST FOR ERROR - FLAG __DEBUG__*/
+#ifndef NDEBUG 
+   /* TEST FOR ERROR - FLAG NDEBUG */
    CuAssertIntEquals(tc, 0, fptr(2, 2, 1, 1));
 #endif
 
