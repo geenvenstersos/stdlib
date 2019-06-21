@@ -12,10 +12,9 @@ LIBS=
 
 CC=gcc
 
-LIBCFLAGS=-I$(IDIR) -nostdinc -ffreestanding -fPIC
+LIBCFLAGS=-I$(IDIR) -nostdinc -nostdlib -ffreestanding -fPIC
 
 SHE = '\#'
-
 
 HEADERS = $(shell find . -name tests -prune -o -print | grep '\.h$$' | grep -v $(SHE) | sed -e 's:^\./::')
 
