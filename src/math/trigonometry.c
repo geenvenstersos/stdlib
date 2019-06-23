@@ -9,6 +9,8 @@ double _power(double base, int exponent, double start, int startexponent) {
 	if(exponent == 0) return 1;
 	else if(exponent == 1) return base;
 
+	if(base > start) return 0;
+
 	int remaingexp = exponent - startexponent;
 
 	if(remaingexp == 0) return base;

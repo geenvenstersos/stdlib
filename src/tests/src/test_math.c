@@ -61,8 +61,8 @@ void test_fabs(CuTest *tc, void* param) {
 
 void test_auxiliary_trig_power(CuTest *tc, void* param) {
 
-   unsigned long long int (*fptr)(int, int, unsigned long long int, int) = 
-      (unsigned long long int (*)(int, int, unsigned long long int, int))param;
+   double (*fptr)(double, int, double, int) = 
+      (double (*)(double, int, double, int))param;
 
 #ifndef NDEBUG 
    /* TEST FOR ERROR - FLAG NDEBUG */
@@ -73,6 +73,7 @@ void test_auxiliary_trig_power(CuTest *tc, void* param) {
    unsigned long long int base2 = 2;
 
    unsigned long long int base_2_2 = fptr(base2, 2, base2, 1);
+
    CuAssertIntEquals(tc,  4, base_2_2);
 
    unsigned long long int base_2_4 = fptr(base2, 4, base_2_2, 2);
