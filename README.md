@@ -1,11 +1,6 @@
-<h1 align="center">Welcome to stdlib 👋</h1>
-<p>
-  <a href="https://www.npmjs.com/package/stdlib" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/stdlib.svg">
-  </a>
-</p>
+<h1 align="center">Welcome to GeenVenters STDLIB implementation </h1>
 
-Small project for a small standard C library;
+Small project for a small standard C library
 
 
 ## References
